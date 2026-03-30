@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Operations Report Generator</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        .section-title { background: #ecf0f1; padding: 8px; font-weight: bold; margin-top: 20px; color: #2980b9; border-left: 5px solid #3498db; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        label { display: block; font-size: 0.9em; margin-bottom: 5px; color: #34495e; font-weight: 600; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #dcdde1; border-radius: 4px; box-sizing: border-box; }
+        .full-width { grid-column: span 2; }
+        button { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        button:hover { background: #219150; }
+
+        /* Print Styling */
+        @media print {
+            body { background: white; padding: 0; }
+            button, .no-print { display: none; }
+            .container { box-shadow: none; border: none; max-width: 100%; }
+            input, select, textarea { border: none; font-size: 1.1em; padding: 2px; background: transparent; }
+            .section-title { background: #eee !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="reportContent">
+    <h2>TRAIN OPERATIONS & LOCO REPORT</h2>
+    
+    <div class="no-print" style="text-align:center; color: #7f8c8d; margin-bottom: 20px;">
+        Fill in the details below and click "Generate PDF" to save.
+    </div>
+
+    <form id="reportForm">
+        <div class="section-title">General Information</div>
+        <div class="grid">
+            <div><label>Date and Time</label><input type="datetime-local"></div>
+            <div><label>Train No</label><input type="text" placeholder="e.g. 12625"></div>
+            <div><label>Station (Ex)</label><input type="text" placeholder="Departure Station"></div>
+            <div><label>Stock Type</label><input type="text" placeholder="e.g. BOXN / BCN"></div>
+            <div><label>Load</label><input type="text" placeholder="e.g. 42 Units / 3500T"></div>
+            <div><label>Brake Van</label><input type="text" placeholder="Brake Van No."></div>
+        </div>
+
+        <div class="section-title">Locomotive Details</div>
+        <div class="grid">
+            <div><label>Loco Number</label><input type="text"></div>
+            <div><label>Loco Type</label><input type="text"></div>
+            <div><label>Loco Base</label><input type="text"></div>
+            <div><label>Loco Remarks</label><input type="text"></div>
+        </div>
+
+        <div class="section-title">BPC & Brake Power</div>
+        <div class="grid">
+            <div><label>BPC Number</label><input type="text"></div>
+            <div><label>Issued At</label><input type="text"></div>
+            <div><label>Issued Date</label><input type="date"></div>
+            <div><label>Type of BPC</label><input type="text"></div>
+            <div><label>BPC Validity</label><input type="text"></div>
+            <div><label>BP %</label><input type="number" placeholder="e.g. 90"></div>
+            <div class="full-width"><label>BMBS %</label><input type="number" placeholder="e.g. 100"></div>
+        </div>
+
+        <div class="section-title">Crew Details</div>
+        <div class="grid">
+            <div><label>Loco Pilot (LP)</label><input type="text"></div>
+            <div><label>Asst. Loco Pilot (ALP)</label><input type="text"></div>
+            <div><label>Train Manager</label><input type="text"></div>
+            <div><label>CUG No</label><input type="text"></div>
+        </div>
+
+        <div class="section-title">General Remarks</div>
+        <div class="full-width" style="margin-top:10px;">
+            <textarea rows="4" placeholder="Enter any additional notes..."></textarea>
+        </div>
+
+        <button type="button" onclick="window.print()">Generate PDF Report</button>
+    </form>
+</div>
+
+</body>
+</html>
